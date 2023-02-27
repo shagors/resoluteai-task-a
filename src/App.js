@@ -1,8 +1,23 @@
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// components call
+import { Header, Footer } from "./components";
+// pages call
+import { Home, Contact } from "./pages";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Test</h1>
-    </div>
+    <>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 
