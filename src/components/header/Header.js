@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 const logo = (
@@ -54,6 +54,10 @@ const Header = () => {
             {" "}
           </div>
           <ul onClick={hideMenu}>
+            <li className={styles["logo-mobile"]}>
+              {logo}
+              <FaTimes size={22} color="#fff" />
+            </li>
             <li>
               <Link to="/">Home</Link>
             </li>
