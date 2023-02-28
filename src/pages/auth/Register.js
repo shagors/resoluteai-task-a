@@ -5,9 +5,12 @@ import Card from "../../components/card/Card";
 import styles from "./auth.module.scss";
 import registerImg from "../../assets/register.png";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import Loader from "../../components/loader/Loader";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -35,6 +38,19 @@ const Register = () => {
       .catch((error) => {
         toast.error(error.message);
         setIsLoading(false);
+      });
+  };
+
+  // login with google
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        toast.success("Login Successfully.");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong.");
       });
   };
 
@@ -72,7 +88,10 @@ const Register = () => {
               </button>
               <p>-- or --</p>
             </form>
-            <button className="--btn --btn-danger --btn-block">
+            <button
+              className="--btn --btn-danger --btn-block"
+              onClick={signInWithGoogle}
+            >
               <FaGoogle color="#fff" /> Login With Google
             </button>
             <span className={styles.register}>
