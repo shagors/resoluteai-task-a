@@ -29,8 +29,7 @@ const Register = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
+        // const user = userCredential.user;
         setIsLoading(false);
         toast.success("Registration Successful...");
         navigate("/login");
@@ -45,7 +44,7 @@ const Register = () => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         toast.success("Login Successfully.");
         navigate("/");
       })
